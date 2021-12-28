@@ -3,55 +3,87 @@
 
         <ul class="nav">
             <li class="nav-item">
-                <a href="{{ route("admin.home") }}" class="nav-link">
+                <a href='{{ route("admin.home") }}' class="nav-link">
                     <i class="nav-icon fas fa-fw fa-tachometer-alt">
 
                     </i>
-                    {{ trans('global.dashboard') }}
+                    Visão Geral
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='/admin/ordemsNav/A' class="nav-link">
+                    <i class="nav-icon fas fa-fw fa-concierge-bell">
+
+                    </i>
+                    Ordens de Serviço
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href='/admin/clientesNav/A' class="nav-link">
+                    <i class="nav-icon fas fa-fw fas fa-users">
+
+                    </i>
+                    Clientes
+                </a>
+            </li>
+            <!--<li class="nav-item">
+                <a href='/admin/funcionariosNav/A' class="nav-link">
+                    <i class="nav-icon fas fa-fw fa-user-clock">
+
+                    </i>
+                    Funcionários
+                </a>
+            </li>-->
+            <li class="nav-item">
+                <a href='{{ route("admin.relatorios.index") }}' class="nav-link">
+                    <i class="nav-icon fas fa-fw fa-file-alt">
+
+                    </i>
+                    Relatórios
                 </a>
             </li>
             @can('users_manage')
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link  nav-dropdown-toggle" href="#">
-                        <i class="fa-fw fas fa-users nav-icon">
+                        <i class="fa-fw fas fa-user-cog nav-icon">
 
                         </i>
-                        {{ trans('cruds.userManagement.title') }}
+                        Administração
                     </a>
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
-                            <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                            <a href='{{ route("admin.permissions.index") }}' class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}'>
                                 <i class="fa-fw fas fa-unlock-alt nav-icon">
 
                                 </i>
-                                {{ trans('cruds.permission.title') }}
+                                Permissões
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
+                            <a href='{{ route("admin.roles.index") }}' class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}'>
                                 <i class="fa-fw fas fa-briefcase nav-icon">
 
                                 </i>
-                                {{ trans('cruds.role.title') }}
+                                Papéis
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                            <a href='{{ route("admin.users.index") }}' class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}'>
                                 <i class="fa-fw fas fa-user nav-icon">
 
                                 </i>
-                                {{ trans('cruds.user.title') }}
+                                Usuários
                             </a>
                         </li>
                     </ul>
                 </li>
             @endcan
             <li class="nav-item">
-                <a href="{{ route('auth.change_password') }}" class="nav-link">
+                <a href='{{ route('auth.change_password') }}' class="nav-link">
                     <i class="nav-icon fas fa-fw fa-key">
 
                     </i>
-                    Change password
+                    Trocar Senha
                 </a>
             </li>
             <li class="nav-item">
@@ -59,7 +91,7 @@
                     <i class="nav-icon fas fa-fw fa-sign-out-alt">
 
                     </i>
-                    {{ trans('global.logout') }}
+                    Sair
                 </a>
             </li>
         </ul>
