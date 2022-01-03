@@ -1,1 +1,1 @@
-php -S localhost:80 -t public&
+php artisan serve --port=80&
