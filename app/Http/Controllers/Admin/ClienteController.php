@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    public function bkpdata()
-    {
-        return $success = \File::copy('storage\\database\\database.sqlite','storage\\database\\database.sqlite.bkp');
+    public function bkpdata(){
+        $success = \File::copy('storage\\database\\database.sqlite','storage\\database\\database.sqlite.bkp');
+        return null;
     }
 
     /**
@@ -138,7 +138,7 @@ class ClienteController extends Controller
             "cidade"   => $request["cidade"],
             "estado"   => $request["estado"]
         ]);
-        $this.bkpdata();
+        $this->bkpdata();
         return back();
     }
 
@@ -185,7 +185,7 @@ class ClienteController extends Controller
         $cliente->cidade   = $request["cidade"];
         $cliente->estado   = $request["estado"];
         $cliente->save();
-        $this.bkpdata();
+        $this->bkpdata();
         return back();
     }
 
