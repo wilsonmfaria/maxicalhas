@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ClienteController extends Controller
 {
     public function bkpdata(){
-        $success = \File::copy('storage\\database\\database.sqlite','storage\\database\\database.sqlite.bkp');
+        $success = \File::copy('C:\\MAXICALHAS\\maxicalhas\\storage\\database\\database.sqlite','C:\\MAXICALHAS\\maxicalhas\\storage\\database\\database.sqlite.bkp');
         return null;
     }
 
