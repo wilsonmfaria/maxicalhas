@@ -130,6 +130,7 @@
                         <div class="row">
 
                             <div class="col text-right">
+                                <a type="button" class="btn btn-primary" href="{{ route('admin.ordems.show', $ordem[0]->id) }}">Imprimir</a>
                                 <button type="button" class="btn btn-warning" data-toggle="modal"
                                     onclick='pegaTotalED()' data-target="#ModalEDITAR">Editar</button>
                                 <form action="{{ route('admin.ordems.destroy', $ordem[0]->id) }}" method="POST"

@@ -179,7 +179,15 @@ class OrdemServicoController extends Controller
      */
     public function show($id)
     {
-        //
+        $ordem = Ordem::find($id);
+        $items = Item::where('ordem_id',$id)->get();
+        $total = 0;
+        foreach($items as $item){
+            $x = floatval($item->valor);
+            $total += $x;
+        }
+        $cliente = Cliente::find($ordem->cliente_id);
+        return view('admin.ordems.printos', compact('ordem','cliente','items','total'));
     }
 
     /**
