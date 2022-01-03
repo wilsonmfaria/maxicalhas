@@ -1,13 +1,16 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&display=swap" rel="stylesheet">
 <div class="content">
     <div class="card">
-        <div class="card-body text-monospace">
+        <div class="card-body" style="font-family: 'Fira Mono', monospace; font-size: 1.25rem;">
             <div class="text-center">
-            <p class="h5 text-center">[MAXI Calhas] -
+            <p class="text-center">[MAXI Calhas] -
                 Calhas|Coifas|Condutores|Pingadeiras|Exaustores|Rufos|Chaminés|Tubulações</p>
-            <p class="h5 text-center">R. Antônio Bernardes Pereira 81, São Geraldo, Varginha-MG
+            <p class="text-center">R. Antônio Bernardes Pereira 81, São Geraldo, Varginha-MG
                 Tel:(35)3221-5679/(35)98887-2205</p>
             </div>
             <hr />
@@ -24,7 +27,7 @@
                     <strong>Vendedor:</strong> {{$ordem->funcionario_nome}}
                 </div>
             </div>
-            <br />
+            
             <div class="row">
                 <div class="col">
                     <strong>Cliente:</strong> {{$cliente->nome}}
@@ -52,12 +55,12 @@
             <hr />
             <div class="row">
                 <div class="col">
-                    <strong>Itens da Ordem de Serviço:</strong><br /><br />
+                    <strong>Itens da Ordem de Serviço</strong>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <strong>Descricao</strong>
+                    <strong>Descrição</strong>
                 </div>
                 <div class="col">
                     <strong>Valor</strong>
@@ -90,27 +93,27 @@
                 </div>
             </div>
             <hr />
-            <p>Obs1. Não é válido como documento fiscal.</p>
-            <p>Obs2. Nota fiscal somente será emitida após o término do serviço.</p>
-            <br />
+            <p>Obs1. Não é válido como documento fiscal.<br />
+            Obs2. Nota fiscal somente será emitida após o término do serviço.</p>
+            
             <div class="row">
                 <div class="col text-center">
-                    <strong>Orçamento Aprovado</strong><br /><br /><br />
+                    <strong>Orçamento Aprovado</strong><br/><br/>
                     _______________________________________________
                 </div>
                 <div class="col text-center">
-                    <strong>Obra concluída e autorizada para emissão de NF.</strong><br /><br /><br />
+                    <strong>Obra concluída e autorizada para emissão de NF.</strong><br/><br/>
                     _______________________________________________
                 </div>
             </div>
         </div>
     </div>
     <div class="card">
-        <div class="card-body text-monospace">
+        <div class="card-body" style="font-family: 'Fira Mono', monospace; font-size: 1.25rem;">
             <div class="text-center">
-            <p class="h5 text-center">[MAXI Calhas] -
+            <p class="text-center">[MAXI Calhas] -
                 Calhas|Coifas|Condutores|Pingadeiras|Exaustores|Rufos|Chaminés|Tubulações</p>
-            <p class="h5 text-center">R. Antônio Bernardes Pereira 81, São Geraldo, Varginha-MG
+            <p class="text-center">R. Antônio Bernardes Pereira 81, São Geraldo, Varginha-MG
                 Tel:(35)3221-5679/(35)98887-2205</p>
             </div>
             <hr />
@@ -127,7 +130,7 @@
                     <strong>Vendedor:</strong> {{$ordem->funcionario_nome}}
                 </div>
             </div>
-            <br />
+            
             <div class="row">
                 <div class="col">
                     <strong>Cliente:</strong> {{$cliente->nome}}
@@ -155,12 +158,12 @@
             <hr />
             <div class="row">
                 <div class="col">
-                    <strong>Itens da Ordem de Serviço:</strong><br /><br />
+                    <strong>Itens da Ordem de Serviço</strong>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <strong>Descricao</strong>
+                    <strong>Descrição</strong>
                 </div>
                 <div class="col">
                     <strong>Valor</strong>
@@ -193,16 +196,16 @@
                 </div>
             </div>
             <hr />
-            <p>Obs1. Não é válido como documento fiscal.</p>
-            <p>Obs2. Nota fiscal somente será emitida após o término do serviço.</p>
-            <br />
+            <p>Obs1. Não é válido como documento fiscal.<br />
+            Obs2. Nota fiscal somente será emitida após o término do serviço.</p>
+            
             <div class="row">
                 <div class="col text-center">
-                    <strong>Orçamento Aprovado</strong><br /><br /><br />
+                    <strong>Orçamento Aprovado</strong><br/><br/>
                     _______________________________________________
                 </div>
                 <div class="col text-center">
-                    <strong>Obra concluída e autorizada para emissão de NF.</strong><br /><br /><br />
+                    <strong>Obra concluída e autorizada para emissão de NF.</strong><br/><br/>
                     _______________________________________________
                 </div>
             </div>
