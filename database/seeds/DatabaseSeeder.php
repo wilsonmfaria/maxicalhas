@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeed::class);
         $this->call(RoleSeed::class);
         $this->call(UserSeed::class);
-        DB::unprepared(file_get_contents('C:\\Portable\\xampp\\htdocs\\maxicalhas.loja\\storage\\arquivos\\clientes.sql'));
-        DB::unprepared(file_get_contents('C:\\Portable\\xampp\\htdocs\\maxicalhas.loja\\storage\\arquivos\\ordems.sql'));
-        DB::unprepared(file_get_contents('C:\\Portable\\xampp\\htdocs\\maxicalhas.loja\\storage\\arquivos\\items.sql'));
++        DB::unprepared(file_get_contents('C:\\MAXICALHAS\\maxicalhas\\storage\\arquivos\\clientes.txt'));
++        DB::unprepared(file_get_contents('C:\\MAXICALHAS\\maxicalhas\\storage\\arquivos\\ordems.txt'));
++        DB::unprepared(file_get_contents('C:\\MAXICALHAS\\maxicalhas\\storage\\arquivos\\items.txt'));
     }
 }
