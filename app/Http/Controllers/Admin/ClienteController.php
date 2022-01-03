@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+    public function bkpdata()
+    {
+        return $success = \File::copy('storage\\database\\database.sqlite','storage\\database\\database.sqlite.bkp');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,9 +51,9 @@ class ClienteController extends Controller
             ->where('nome','not like','Z%')
             ->where('nome','not like','W%')
             ->orderBy('nome', 'ASC')
-            ->get(["nome","id"]);
+            ->get(["nome","id","telefone"]);
         }else{
-            $nomes = Cliente::where('nome','like',$letra.'%')->orderBy('nome', 'ASC')->get(["nome","id"]);
+            $nomes = Cliente::where('nome','like',$letra.'%')->orderBy('nome', 'ASC')->get(["nome","id","telefone"]);
         }
         if (count($nomes) > 0){
             $cliente = Cliente::where('id',$nomes[0]->id)->get();
@@ -97,7 +102,7 @@ class ClienteController extends Controller
             ->orderBy('nome', 'ASC')
             ->get(["nome","id"]);
         }else{
-            $nomes = Cliente::where('nome','like',$letra.'%')->orderBy('nome', 'ASC')->get(["nome","id"]);
+            $nomes = Cliente::where('nome','like',$letra.'%')->orderBy('nome', 'ASC')->get(["nome","id","telefone"]);
         }
         $cliente = Cliente::where('id',$id)->get();
         return view('admin.clientes.home', compact('nomes','cliente','letra'));
@@ -133,6 +138,7 @@ class ClienteController extends Controller
             "cidade"   => $request["cidade"],
             "estado"   => $request["estado"]
         ]);
+        $this.bkpdata();
         return back();
     }
 
@@ -179,6 +185,7 @@ class ClienteController extends Controller
         $cliente->cidade   = $request["cidade"];
         $cliente->estado   = $request["estado"];
         $cliente->save();
+        $this.bkpdata();
         return back();
     }
 

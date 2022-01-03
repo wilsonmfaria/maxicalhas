@@ -38,9 +38,10 @@
             <div class="overflow-auto">
                 <div class="list-group">
                     @foreach($nomes as $nome)
-                    <a href="/admin/ordemNav/{{$letra}}/{{$nome->id}}"
-                        class="list-group-item list-group-item-action">{{$nome->cliente_nome}}<br>{{$nome->id}} |
-                        {{ date('d-m-Y', strtotime($nome->created_at)) }}</a>
+                    <a href="/admin/ordemNav/{{$letra}}/{{$nome->id}}" class="list-group-item list-group-item-action">
+                        <span>{{$nome->cliente_nome}}</span><br/>
+                        <span class="badge badge-pill badge-light">Aberto em: {{ date('d/m/Y', strtotime($nome->created_at)) }}</span>
+                    </a>
                     @endforeach
                 </div>
             </div>

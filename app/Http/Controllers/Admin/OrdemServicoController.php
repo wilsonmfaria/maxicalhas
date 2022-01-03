@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class OrdemServicoController extends Controller
 {
+    public function bkpdata(){
+        return $success = \File::copy('storage\\database\\database.sqlite','storage\\database\\database.sqlite.bkp');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -164,6 +167,7 @@ class OrdemServicoController extends Controller
                 'valor'     => $valor
             ]);
         }
+        $this.bkpdata();
         return redirect('/admin/ordemNav/&/'.$OSid);
     }
 
@@ -222,6 +226,7 @@ class OrdemServicoController extends Controller
                 'valor'     => $valor
             ]);
         }
+        $this.bkpdata();
         return redirect('/admin/ordemNav/&/'.$id);
     }
 

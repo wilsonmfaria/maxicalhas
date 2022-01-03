@@ -38,8 +38,11 @@
             <div class="overflow-auto">
                 <div class="list-group">
                     @foreach($nomes as $nome)
-                    <a href="/admin/clienteNav/{{$letra}}/{{$nome->id}}"
-                        class="list-group-item list-group-item-action">{{$nome->nome}}</a>
+                    <a href="/admin/clienteNav/{{$letra}}/{{$nome->id}}"class="list-group-item list-group-item-action">
+                        <span >{{ $nome->nome }}</span>
+                        </br>
+                        <span class="badge badge-pill badge-light">{{ $nome->telefone }}</span><span class="badge badge-pill badge-light">{{ $nome->celular }}</span>
+                    </a>
                     @endforeach
                 </div>
             </div>
@@ -75,7 +78,7 @@
                                 <p><strong>Telefone:</strong> {{$cliente[0]->telefone}}</p>
                                 <p><strong>Celular:</strong>&nbsp; {{$cliente[0]->celular}}</p>
                                 @foreach($cliente[0]->ordems as $ordem)
-                                    <a class="btn btn-sm btn-secondary" href="/admin/ordemNav/&/{{$ordem->id}}">OS-{{$ordem->id}}</a> 
+                                    <a class="btn btn-sm btn-secondary" href="/admin/ordemNav/@/{{$ordem->id}}">OS-{{$ordem->id}}</a> 
                                     @if($loop->index+1 % 6 == 0)
                                         <br/>
                                     @endif 

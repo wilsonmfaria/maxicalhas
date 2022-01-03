@@ -1,0 +1,1 @@
+php artisan serve --host=maxicalhas.test --port=80&
