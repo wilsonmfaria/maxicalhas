@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class OrdemServicoController extends Controller
 {
     public function bkpdata(){
-        $success = \File::copy('C:\\MAXICALHAS\\maxicalhas\\storage\\database\\database.sqlite','C:\\MAXICALHAS\\maxicalhas\\storage\\database\\database.sqlite.bkp');
+        $success = \File::copy('C:\\MAXICALHAS\\maxicalhas\\storage\\database\\database.sqlite','C:\\MAXICALHAS\\maxicalhas\\storage\\database\\database.sqlite.bkp'.date('d'));
         return null;
     }
     /**
