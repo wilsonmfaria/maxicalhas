@@ -143,12 +143,12 @@ class OrdemServicoController extends Controller
     public function store(Request $request)
     {
         $nome = explode('-',$request["cliente_nome"])[1];
-        $id = explode('-',$request["cliente_nome"])[0];
+        $cliente_id = explode('-',$request["cliente_nome"])[0];
         $paga = $request["paga"] == "Sim" ? "Sim" : "Não";
         $concluida = $request["concluida"] == "Sim" ? "Sim" : "Não";
         $novaordem = [
             "cliente_nome" => $nome,
-            "cliente_id" => $id,
+            "cliente_id" => $cliente_id,
             "funcionario_nome" => $request["funcionario_nome"],
             "valor_final" => $request["valor_final"],
             "total_pago" => $request["total_pago"],
@@ -212,12 +212,12 @@ class OrdemServicoController extends Controller
     public function update(Request $request, $id)
     {
         $nome = explode('-',$request["cliente_nome"])[1];
-        $id = explode('-',$request["cliente_nome"])[0];
+        $cliente_id = explode('-',$request["cliente_nome"])[0];
         $paga = $request["paga"] == "Sim" ? "Sim" : "Não";
         $concluida = $request["concluida"] == "Sim" ? "Sim" : "Não";
         $novaordem = Ordem::find($id);
         $novaordem->cliente_nome = $nome;
-        $novaordem->cliente_id = $id;
+        $novaordem->cliente_id = $cliente_id;
         $novaordem->funcionario_nome = $request["funcionario_nome"];
         $novaordem->valor_final = $request["valor_final"];
         $novaordem->total_pago = $request["total_pago"];
