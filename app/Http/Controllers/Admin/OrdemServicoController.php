@@ -150,6 +150,9 @@ class OrdemServicoController extends Controller
             "cliente_nome" => $nome,
             "cliente_id" => $cliente_id,
             "funcionario_nome" => $request["funcionario_nome"],
+            "local_obra" => $request["local_obra"],
+            "valor_desconto" => $request["valor_desconto"],
+            "valor_bruto" => $request["valor_bruto"],
             "valor_final" => $request["valor_final"],
             "total_pago" => $request["total_pago"],
             "total_devido" => $request["total_devido"],
@@ -219,6 +222,9 @@ class OrdemServicoController extends Controller
         $novaordem->cliente_nome = $nome;
         $novaordem->cliente_id = $cliente_id;
         $novaordem->funcionario_nome = $request["funcionario_nome"];
+        $novaordem->valor_bruto = $request["valor_bruto"];
+        $novaordem->valor_desconto = $request["valor_desconto"];
+        $novaordem->local_obra = $request["local_obra"];
         $novaordem->valor_final = $request["valor_final"];
         $novaordem->total_pago = $request["total_pago"];
         $novaordem->total_devido = $request["total_devido"];

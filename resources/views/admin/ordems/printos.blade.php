@@ -58,6 +58,7 @@
                     {{$cliente->cidade}}
                     {{$cliente->estado}} {{$cliente->cep == '' ? '' : 'CEP: '.$cliente->cep}}
                 </div>
+                <div class="col"><strong>Local da Obra:</strong> {{$ordem->local_obra}}</div>
             </div>
             <hr />
             <div class="row">
@@ -85,7 +86,7 @@
             @endforeach
             <div class="row">
                 <div class="col text-right">
-                    <strong>Total:</strong>
+                    <strong>Valor Bruto:</strong>
                 </div>
                 <div class="col border-top">
                     <strong>R$ {{number_format($total,2,'.','')}} </strong>
@@ -93,9 +94,17 @@
             </div>
             <div class="row">
                 <div class="col text-right">
-                    <strong>Valor Combinado:</strong>
+                    <strong>Abatimento:</strong>
                 </div>
                 <div class="col">
+                    <strong>R$ {{number_format($ordem->valor_desconto,2,'.','')}} </strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <strong>Valor Final:</strong>
+                </div>
+                <div class="col border-top">
                     <strong>R$ {{number_format($ordem->valor_final,2,'.','')}} </strong>
                 </div>
             </div>

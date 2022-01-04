@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="content">
 
     <div class="row">
@@ -75,6 +76,12 @@
                                 <p><strong>Paga:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     {{$ordem[0]->paga}}</p>
                                 <br /><br />
+                                <p><strong>Valor Bruto:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R$
+                                    {{number_format($ordem[0]->valor_bruto,2,'.','')}}
+                                </p>
+                                <p><strong>Abatimentos:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R$
+                                    {{number_format($ordem[0]->valor_desconto,2,'.','')}}
+                                </p>
                                 <p><strong>Valor Final:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R$
                                     {{number_format($ordem[0]->valor_final,2,'.','')}}
                                 </p>
@@ -85,6 +92,8 @@
                                 <p><strong>Em Aberto:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R$
                                     {{number_format($ordem[0]->total_devido,2,'.','')}}
                                 </p>
+                                <br />
+                                <p><strong>Local Obra:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$ordem[0]->local_obra}}</p>
 
 
                             </div>
@@ -134,7 +143,7 @@
                             <div class="col text-right">
                                 <a type="button" class="btn btn-primary" href="{{ route('admin.ordems.show', $ordem[0]->id) }}">Imprimir</a>
                                 <button type="button" class="btn btn-warning" data-toggle="modal"
-                                    onclick='pegaTotalED()' data-target="#ModalEDITAR">Editar</button>
+                                    data-target="#ModalEDITAR">Editar</button>
                                 <form action="{{ route('admin.ordems.destroy', $ordem[0]->id) }}" method="POST"
                                     onsubmit="return confirm('Tem certeza?');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
@@ -185,6 +194,14 @@
                                 required="required" autocomplete="off">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="local_obra" class="col-2 col-form-label">Local da Obra</label>
+                        <div class="col-8">
+                            <input id="local_obra" name="local_obra"
+                                placeholder="Entre com o local da obra" type="text" class="form-control"
+                                autocomplete="off">
+                        </div>
+                    </div>
                     <hr />
                     <label for="inputFormRow" class="col-form-label">Items da ordem de serviço:</label>
                     <div id="inputFormRow">
@@ -192,7 +209,7 @@
                             <input type="text" name="descricaoOS[]" class="form-control m-input"
                                 placeholder="Descrição do produto/serviço" autocomplete="off" required="required">
 
-                            <input onblur="pegaTotal()" type="number" lang="en_US" step="0.01" name="valorOS[]"
+                            <input onblur="calcBruto()" type="number" lang="en_US" step="0.01" name="valorOS[]"
                                 class="form-control m-input" placeholder="Valor do produto/serviço" autocomplete="off"
                                 value=0 required="required">
                             <div class="input-group-append">
@@ -207,24 +224,38 @@
                     </strong>
                     <hr />
                     <div class="form-group row">
-                        <label for="valor_final" class="col-2 col-form-label">Valor Final*</label>
+                        <label for="valor_bruto" class="col-2 col-form-label">Valor Bruto</label>
                         <div class="col-8">
-                            <input id="valor_final" name="valor_final" placeholder="Entre com o valor final combinado"
-                                type="number" lang="us-US" step="0.01" class="form-control" required="required" autocomplete="off">
+                            <input id="valor_bruto" name="valor_bruto" placeholder="Somatório automático dos itens da nota."
+                                type="number" lang="us-US" step="0.01" class="form-control" required readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="valor_desconto" class="col-2 col-form-label">Abatimentos</label>
+                        <div class="col-8">
+                            <input onblur='calcFinal()' id="valor_desconto" name="valor_desconto" placeholder="Entre com o desconto a ser oferecido"
+                                type="number" lang="en_US" step="0.01" class="form-control" required autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="valor_final" class="col-2 col-form-label">Valor Final</label>
+                        <div class="col-8">
+                            <input id="valor_final" name="valor_final" placeholder="Valor a ser pago pelo cliente (Bruto - Abatimento)"
+                                type="number" lang="us-US" step="0.01" class="form-control" required readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="total_pago" class="col-2 col-form-label">Total Pago</label>
                         <div class="col-8">
                             <input onblur='calcDevido()' id="total_pago" name="total_pago" placeholder="Entre com o valor já pago"
-                                type="number" lang="en_US" step="0.01" class="form-control" required="required" autocomplete="off">
+                                type="number" lang="en_US" step="0.01" class="form-control" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="total_devido" class="col-2 col-form-label">Total Em Aberto</label>
                         <div class="col-8">
-                            <input id="total_devido" name="total_devido" placeholder="Entre com o valor a ser paga"
-                                type="number" lang="en_US" step="0.01" class="form-control" readonly>
+                            <input id="total_devido" name="total_devido" placeholder="Valor a ser quitado pelo cliente"
+                                type="number" lang="en_US" step="0.01" class="form-control" required readonly>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -263,7 +294,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalEDITARLabel">Cadastro de Novo ordem</h5>
+                <h5 class="modal-title" id="ModalEDITARLabel">Edição de Ordem de Serviço</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -288,6 +319,14 @@
                                 required="required" value="{{$ordem[0]->funcionario_nome}}" autocomplete="off">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="local_obraED" class="col-2 col-form-label">Local da Obra</label>
+                        <div class="col-8">
+                            <input id="local_obraED" name="local_obra"
+                                placeholder="Entre com o local da obra" type="text" class="form-control"
+                                autocomplete="off" value="{{$ordem[0]->local_obra}}">
+                        </div>
+                    </div>
                     <hr />
                     <label for="inputFormRowED" class="col-form-label">Items da ordem de serviço:</label>
                     @foreach($items as $item)
@@ -297,7 +336,7 @@
                                 placeholder="Descrição do produto/serviço" autocomplete="off"
                                 value="{{$item->descricao}}" required="required">
 
-                            <input onblur="pegaTotalED()" type="number" lang="en_US" step="0.01" name="valorOSED[]"
+                            <input onblur="calcBrutoED()" type="number" lang="en_US" step="0.01" name="valorOSED[]"
                                 class="form-control m-input" placeholder="Valor do produto/serviço" autocomplete="off"
                                 value="{{$item->valor}}" required="required">
                             <div class="input-group-append">
@@ -313,36 +352,47 @@
                     </strong>
                     <hr />
                     <div class="form-group row">
-                        <label for="valor_finalED" class="col-2 col-form-label">Valor Final*</label>
+                        <label for="valor_brutoED" class="col-2 col-form-label">+ Valor Bruto</label>
                         <div class="col-8">
-                            <input id="valor_finalED" name="valor_final" placeholder="Entre com o valor final combinado"
-                                type="number" lang="us-US" step="0.01" class="form-control" required="required"
-                                value="{{$ordem[0]->valor_final}}" required="required" autocomplete="off">
+                            <input id="valor_brutoED" name="valor_bruto" placeholder="Somatório automático dos itens da nota."
+                                type="number" lang="us-US" step="0.01" class="form-control" required="required" value="{{$ordem[0]->valor_bruto}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="total_pago" class="col-2 col-form-label">Total Pago</label>
+                        <label for="valor_descontoED" class="col-2 col-form-label">- Abatimentos</label>
+                        <div class="col-8">
+                            <input onblur='calcFinalED()' id="valor_descontoED" name="valor_desconto" placeholder="Entre com o desconto a ser oferecido"
+                                type="number" lang="en_US" step="0.01" class="form-control" required="required" autocomplete="off" value="{{$ordem[0]->valor_desconto}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="valor_finalED" class="col-2 col-form-label">= Valor Final</label>
+                        <div class="col-8">
+                            <input id="valor_finalED" name="valor_final" placeholder="Valor a ser pago pelo cliente (Bruto - Abatimento)"
+                                type="number" lang="us-US" step="0.01" class="form-control" required="required" value="{{$ordem[0]->valor_final}}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="total_pagoED" class="col-2 col-form-label">Total Pago</label>
                         <div class="col-8">
                             <input onblur='calcDevidoED()' id="total_pagoED" name="total_pago" placeholder="Entre com o valor já pago"
-                                type="number" lang="en_US" step="0.01" class="form-control"
-                                value="{{$ordem[0]->total_pago}}" required="required" autocomplete="off">
+                                type="number" lang="en_US" step="0.01" class="form-control" required="required" autocomplete="off" value="{{$ordem[0]->total_pago}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="total_devido" class="col-2 col-form-label">Total Em Aberto</label>
+                        <label for="total_devidoED" class="col-2 col-form-label">Total Em Aberto</label>
                         <div class="col-8">
-                            <input id="total_devidoED" name="total_devido" placeholder="Entre com o valor a ser paga"
-                                type="number" lang="en_US" step="0.01" class="form-control"
-                                value="{{$ordem[0]->total_devido}}" readonly>
+                            <input id="total_devidoED" name="total_devido" placeholder="Valor a ser quitado pelo cliente"
+                                type="number" lang="en_US" step="0.01" class="form-control" value="{{$ordem[0]->total_devido}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2">Concluida</label>
                         <div class="col-8">
                             <div class="custom-control custom-checkbox custom-control-inline">
-                                <input name="concluida" id="concluida_0" type="checkbox" {{$ordem[0]->concluida == "Sim" ? "checked" : ""}}
+                                <input name="concluida" id="concluidaED_0" type="checkbox" {{$ordem[0]->concluida == "Sim" ? "checked" : ""}}
                                     class="custom-control-input" value="Sim">
-                                <label for="concluida_0" class="custom-control-label">Marcado (Sim) | Desmarcado (Não)</label>
+                                <label for="concluidaED_0" class="custom-control-label">Marcado (Sim) | Desmarcado (Não)</label>
                             </div>
                         </div>
                     </div>
@@ -350,9 +400,9 @@
                         <label class="col-2">Paga</label>
                         <div class="col-8">
                             <div class="custom-control custom-checkbox custom-control-inline">
-                                <input name="paga" id="paga_0" type="checkbox" {{$ordem[0]->paga == "Sim" ? "checked" : ""}}
+                                <input name="paga" id="pagaED_0" type="checkbox" {{$ordem[0]->paga == "Sim" ? "checked" : ""}}
                                     class="custom-control-input" value="Sim">
-                                <label for="paga_0" class="custom-control-label">Marcado (Sim) | Desmarcado (Não)</label>
+                                <label for="pagaED_0" class="custom-control-label">Marcado (Sim) | Desmarcado (Não)</label>
                             </div>
                         </div>
                     </div>
@@ -387,18 +437,24 @@ $(document).on('click', '#removeRow', function() {
     $(this).closest('#inputFormRow').remove();
 });
 
-function pegaTotal() {
+function calcBruto() {
     total = 0.00;
     $('input[name="valorOS[]"]').each(function() {
         val = $(this).val();
         total += Number.parseFloat(val);
     });
     $("#totalOS").text("TOTAL: R$ " + total);
-    $("#valor_final").val(total);
+    $("#valor_bruto").val(total);
+};
+
+function calcFinal() {
+    var bruto = $('#valor_bruto').val();
+    var abat = $('#valor_desconto').val();
+    final = Number.parseFloat(bruto)-Number.parseFloat(abat);
+    $("#valor_final").val(final);
 };
 
 function calcDevido() {
-    total = 0.00;
     var total = $('#valor_final').val();
     var pago = $('#total_pago').val();
     final = Number.parseFloat(total)-Number.parseFloat(pago);
@@ -422,18 +478,24 @@ $(document).on('click', '#removeRowED', function() {
     $(this).closest('#inputFormRowED').remove();
 });
 
-function pegaTotalED() {
+function calcBrutoED() {
     total = 0.00;
     $('input[name="valorOSED[]"]').each(function() {
         val = $(this).val();
         total += Number.parseFloat(val);
     });
     $("#totalOSED").text("TOTAL: R$ " + total);
-    //$("#valor_finalED").val(total);
+    $("#valor_brutoED").val(total);
+};
+
+function calcFinalED() {
+    var bruto = $('#valor_brutoED').val();
+    var abat = $('#valor_descontoED').val();
+    final = Number.parseFloat(bruto)-Number.parseFloat(abat);
+    $("#valor_finalED").val(final);
 };
 
 function calcDevidoED() {
-    total = 0.00;
     var total = $('#valor_finalED').val();
     var pago = $('#total_pagoED').val();
     final = Number.parseFloat(total)-Number.parseFloat(pago);
