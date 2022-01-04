@@ -32,6 +32,8 @@
                         href='/admin/ordemsNav/Y'>Y</a></span>
                 <span><a class='btn btn-light' href='/admin/ordemsNav/L'>L</a> <a class='btn btn-light'
                         href='/admin/ordemsNav/Z'>Z</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/W'>W</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/&'>#</a></span>
             </div>
         </div>
         <div class="fixed-lista bg-white text-center rounded p-2 m-2">

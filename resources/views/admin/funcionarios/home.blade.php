@@ -5,33 +5,35 @@
 
     <div class="row">
         <div class="fixed-abcdario bg-white text-center rounded p-2 m-2">
-            <div class="list-group" style="font-family: 'Courier New', monospace; font-size:25px;">
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/&'>#</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/M'>M</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/A'>A</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/N'>N</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/B'>B</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/O'>O</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/C'>C</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/P'>P</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/D'>D</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/Q'>Q</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/E'>E</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/R'>R</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/F'>F</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/S'>S</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/G'>G</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/T'>T</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/H'>H</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/U'>U</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/I'>I</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/V'>V</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/J'>J</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/X'>X</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/K'>K</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/Y'>Y</a></span>
-                <span><a class='btn btn-light' href='/admin/funcionariosNav/L'>L</a> <a class='btn btn-light'
-                        href='/admin/funcionariosNav/Z'>Z</a></span>
+        <div class="list-group" style="font-family: 'Courier New', monospace; font-size:25px;">
+                <span><a class='btn btn-light' href='/admin/ordemsNav/&'>#</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/M'>M</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/A'>A</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/N'>N</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/B'>B</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/O'>O</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/C'>C</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/P'>P</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/D'>D</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/Q'>Q</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/E'>E</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/R'>R</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/F'>F</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/S'>S</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/G'>G</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/T'>T</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/H'>H</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/U'>U</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/I'>I</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/V'>V</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/J'>J</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/X'>X</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/K'>K</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/Y'>Y</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/L'>L</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/Z'>Z</a></span>
+                <span><a class='btn btn-light' href='/admin/ordemsNav/W'>W</a> <a class='btn btn-light'
+                        href='/admin/ordemsNav/&'>#</a></span>
             </div>
         </div>
         <div class="fixed-lista bg-white text-center rounded p-2 m-2">
