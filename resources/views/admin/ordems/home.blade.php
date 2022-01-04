@@ -429,7 +429,7 @@ function pegaTotalED() {
         total += Number.parseFloat(val);
     });
     $("#totalOSED").text("TOTAL: R$ " + total);
-    $("#valor_finalED").val(total);
+    //$("#valor_finalED").val(total);
 };
 
 function calcDevidoED() {
