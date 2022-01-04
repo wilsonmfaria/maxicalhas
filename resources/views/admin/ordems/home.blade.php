@@ -277,7 +277,7 @@
                         <div class="col-8">
                             <input id="cliente_nomeED" name="cliente_nome"
                                 placeholder="Entre com o cliente_nome completo" type="text" class="form-control"
-                                required="required" value="{{$ordem[0]->id}}-{{$ordem[0]->cliente_nome}}" readonly>
+                                required="required" value="{{$ordem[0]->cliente_id}}-{{$ordem[0]->cliente_nome}}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
