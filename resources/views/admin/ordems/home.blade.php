@@ -426,7 +426,7 @@ $("#addRow").click(function() {
     html += '<div id="inputFormRow">';
     html += '<div class="input-group mb-1">';
     html += '<input type="text" name="descricaoOS[]" class="form-control m-input" placeholder="Descrição do produto/serviço" autocomplete="off" required="required">';
-    html += '<input onblur="pegaTotal()" type="number" step="0.01" lang="en-US" name="valorOS[]" class="form-control m-input" placeholder="Valor do produto/serviço" autocomplete="off" value=0 required="required">';
+    html += '<input onblur="calcBruto()" type="number" step="0.01" lang="en-US" name="valorOS[]" class="form-control m-input" placeholder="Valor do produto/serviço" autocomplete="off" value=0 required="required">';
     html += '<div class="input-group-append">';
     html += '<button id="removeRow" type="button" class="btn btn-danger">Remover</button>';
     html += '</div>';
@@ -467,7 +467,7 @@ $("#addRowED").click(function() {
     html += '<div id="inputFormRowED">';
     html += '<div class="input-group mb-1">';
     html += '<input type="text" name="descricaoOSED[]" class="form-control m-input" placeholder="Descrição do produto/serviço" autocomplete="off" required="required">';
-    html += '<input onblur="pegaTotalED()" type="number" step="0.01" lang="en-US" name="valorOSED[]" class="form-control m-input" placeholder="Valor do produto/serviço" autocomplete="off" required value=0 required="required">';
+    html += '<input onblur="calcBrutoED()" type="number" step="0.01" lang="en-US" name="valorOSED[]" class="form-control m-input" placeholder="Valor do produto/serviço" autocomplete="off" required value=0 required="required">';
     html += '<div class="input-group-append">';
     html += '<button id="removeRowED" type="button" class="btn btn-danger">Remover</button>';
     html += '</div>';
