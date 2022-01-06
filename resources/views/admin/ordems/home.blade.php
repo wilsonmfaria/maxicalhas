@@ -173,7 +173,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('admin.ordems.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.ordems.store') }}" onsubmit="calcALL()" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group row">
@@ -299,7 +299,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('admin.ordems.update',$ordem[0]->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.ordems.update',$ordem[0]->id) }}" onsubmit="calcALLED()"  method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -443,22 +443,22 @@ function calcBruto() {
         val = $(this).val();
         total += Number.parseFloat(val);
     });
-    $("#totalOS").text("TOTAL: R$ " + total);
-    $("#valor_bruto").val(total);
+    $("#totalOS").text("TOTAL: R$ " + total.toFixed(2));
+    $("#valor_bruto").val(total.toFixed(2));
 };
 
 function calcFinal() {
     var bruto = $('#valor_bruto').val();
     var abat = $('#valor_desconto').val();
     final = Number.parseFloat(bruto)-Number.parseFloat(abat);
-    $("#valor_final").val(final);
+    $("#valor_final").val(final.toFixed(2));
 };
 
 function calcDevido() {
     var total = $('#valor_final').val();
     var pago = $('#total_pago').val();
     final = Number.parseFloat(total)-Number.parseFloat(pago);
-    $("#total_devido").val(final);
+    $("#total_devido").val(final.toFixed(2));
 };
 
 //FUNCOES PARA CONTROLE DA EDICAO DE OS
@@ -484,22 +484,36 @@ function calcBrutoED() {
         val = $(this).val();
         total += Number.parseFloat(val);
     });
-    $("#totalOSED").text("TOTAL: R$ " + total);
-    $("#valor_brutoED").val(total);
+    $("#totalOSED").text("TOTAL: R$ " + total.toFixed(2));
+    $("#valor_brutoED").val(total.toFixed(2));
 };
 
 function calcFinalED() {
     var bruto = $('#valor_brutoED').val();
     var abat = $('#valor_descontoED').val();
     final = Number.parseFloat(bruto)-Number.parseFloat(abat);
-    $("#valor_finalED").val(final);
+    $("#valor_finalED").val(final.toFixed(2));
 };
 
 function calcDevidoED() {
     var total = $('#valor_finalED').val();
     var pago = $('#total_pagoED').val();
     final = Number.parseFloat(total)-Number.parseFloat(pago);
-    $("#total_devidoED").val(final);
+    $("#total_devidoED").val(final.toFixed(2));
+};
+
+function calcALL() {
+    calcBruto();
+    calcFinal();
+    calcDevido();
+    return true;
+};
+
+function calcALLED() {
+    calcBrutoED();
+    calcFinalED();
+    calcDevidoED();
+    return true;
 };
 </script>
 @parent
